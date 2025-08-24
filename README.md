@@ -6,7 +6,7 @@
 
 ## 📑 Table of Contents
 - [Background](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#-background)
-- [Dataset](#dataset)
+- [Dataset](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#-dataset)
 - [Model Design](#model-design)
 - [Methods](#methods)
 - [Results](#results)
