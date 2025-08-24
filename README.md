@@ -8,7 +8,7 @@
 - [Background](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#-background)
 - [Dataset](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#-dataset)
 - [Model Design](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#-model-design)
-- [Methods](#methods)
+- [Methods](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#%EF%B8%8F-methods)
 - [Results](#results)
 - [Conclusion & Future Work](#conclusion--future-work)
 - [References](#references)
