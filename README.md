@@ -11,7 +11,7 @@
 - [Methods](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#%EF%B8%8F-methods)
 - [Results](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#-results)
 - [Conclusion & Future Work](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#-conclusion--future-work)
-- [References](#references)
+- [References](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#-references)
 
 ---
 
