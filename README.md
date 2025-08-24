@@ -5,7 +5,7 @@
 本專案旨在透過 **深度學習模型 (2D U-Net 與 nnU-Net)** 進行 **急性闌尾炎 (Acute Appendicitis)** CT 影像的自動化分類與分割，以期提升臨床診斷的效率與準確性。  
 
 ## 📑 Table of Contents
-- [Background]([#background](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#-background))
+- [Background](https://github.com/Wendylin0112/AOCR2024-AI-Challenge/blob/main/README.md#-background)
 - [Dataset](#dataset)
 - [Model Design](#model-design)
 - [Methods](#methods)
