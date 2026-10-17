@@ -8,7 +8,7 @@ This repository documents an **academic medical-image analysis project** explori
 
 - **Task:** CT-based segmentation and scan-level identification of acute appendicitis
 - **Methods:** 2D U-Net, 3D nnU-Net, normalization, augmentation, threshold-based post-processing
-- **Reported outcome:** A peak F1-score of **0.875** for the 2D U-Net experiments; see the detailed results below for the evaluation context and variation
+- **Documented outcome:** The 2D U-Net pipeline achieved **scan-level F1 = 0.833** on the course-provided 20-patient evaluation set. The teammate's nnU-Net experiment reported **0.666**, but the pipelines were not controlled comparisons.
 - **Artifacts:** [Written report](./基於U-Net的急性闌尾炎分類任務_書面報告.pdf) · [Project poster](./醫學影像project壁報影印版本.pdf)
 
 > **Scope:** This is a course/challenge-based experimental project, not a clinically validated diagnostic system.
@@ -62,7 +62,7 @@ This repository documents an **academic medical-image analysis project** explori
   - 前處理
   - 網路架構
   - 訓練參數  
-- 預設需長時間訓練 (1000 epochs)，本研究因資源限制僅訓練 **30 epochs**
+- 預設需長時間訓練 (1000 epochs)，本研究因資源限制僅執行約 **33 個訓練週期**（見書面報告）
 
 ---
 
@@ -71,7 +71,7 @@ This repository documents an **academic medical-image analysis project** explori
 - **Normalization**：`img / 4095`  
   - 保留原始 CT 強度分布  
   - 優於 `mat2gray` 的線性拉伸
-- **Augmentation**：影像翻轉、旋轉  
+- **Augmentation**：小角度旋轉（-10° 至 +10°）及縮放（0.8 至 1.2 倍）；正式報告指出未採用水平或垂直翻轉  
 - **Post-processing**：
   - 機率閾值 > 0.77
   - 面積閾值：取訓練集中 **有遮罩面積的第 9 百分位數** 過濾掉過小偽陽性區域
@@ -85,34 +85,27 @@ This repository documents an **academic medical-image analysis project** explori
 
 ---
 
-## 📊 Results
-### U-Net (2D, 手動調參)
-- **F1-score**：最高可達 0.875  
-- 表現差異大 (部分低至 0.25)  
-- **Scan-level**：
-  - 正確辨識 10 位病人
-  - 誤判 7 位健康病人  
-  - 平均 F1 ≈ **0.74**
+## 📊 Results (course evaluation)
 
-### nnU-Net (3D, 自動化調參)
-- **F1-score**：0.1 ~ 0.3  
-- FP 數量偏高  
-- **Scan-level**：
-  - 正確辨識 10 位病人
-  - 誤判 10 位健康病人  
-  - 平均 F1 ≈ **0.66**
+### U-Net (2D, 手動調參；本人負責)
+- 在課程提供之 **20 位病患評估集**，scan-level **F1-score = 0.833**。
+- 報告記錄 10 位患病者皆判為陽性，另有 4 位未患病者被誤判為陽性。
+- Slice-level 病灶定位仍不穩定；部分病患即使 scan-level 判斷正確，預測遮罩仍可能未與真實病灶重疊。
 
----
+### nnU-Net (3D, 隊友實作)
+- 同份課程報告記載 scan-level **F1-score = 0.666**。
+- 受硬體與時間限制，只完成約 33 個訓練週期，模型尚未充分收斂。
+
+### Limitations / 實驗限制
+- 初期流程曾 **先進行資料擴增，才劃分訓練／驗證資料**，可能使相關影像同時出現在兩個集合，造成驗證結果過度樂觀。
+- 部分模型與後處理設定根據自建測試集反覆調整，因此需要更嚴謹、隔離的最終評估來驗證泛化能力。
+- 2D U-Net 與 nnU-Net 使用不同前處理、訓練與後處理設定；上述數字**不能單獨證明 2D U-Net 架構優於 nnU-Net**。
+- 此為學術課程實驗，尚未經臨床驗證。
 
 ## ✅ Conclusion & Future Work
-- **結論**
-  - U-Net (手動調參) 在小型醫療影像資料集上表現較佳，具 **效率與彈性**
-  - nnU-Net 雖有自動化優勢，但需更多訓練資源與更長時間，短期內未展現潛力
-
-- **未來工作**
-  - 統一資料處理流程，確保公平比較
-  - 提升 nnU-Net 訓練資源 (完整 1000 epochs)
-  - 擴充更大規模資料集，提升泛化能力
+- 建立以病患為單位、先切分再擴增的資料處理流程，避免資料洩漏。
+- 採用一致的資料、訓練與評估設定以公平比較模型。
+- 針對低品質或困難切片進行錯誤分析，改善 2D 分割的空間連續性與誤判問題。
 
 ---
 
